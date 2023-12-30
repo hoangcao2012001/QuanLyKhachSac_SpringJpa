@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  
+  
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+        <title>
+         Danh Sách Đặt Phòng
+        </title>
+        <!--     Fonts and icons     -->
+     <link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/apple-icon.png}">
+<link rel="icon" type="image/png" th:href="@{/img/favicon.png}"/>
+<link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700}" type="text/css" />
+ <!-- Nucleo Icons -->
+  <link th:href="@{/css/nucleo-icons.css}" rel="stylesheet" />
+  <link th:href="@{/css/nucleo-svg.css}" rel="stylesheet" />
+  <script th:src="@{https://kit.fontawesome.com/42d5adcbca.js}" crossorigin="anonymous"></script>
+<!-- Material Icons -->
+ <link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons+Round}" rel="stylesheet" />
+ <!-- CSS Files -->
+<link id="pagestyle" th:href="@{/css/material-dashboard.css?v=3.0.4}" rel="stylesheet" />
+  <script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/js/plugins/smooth-scrollbar.min.js}"></script>
+<script th:src="@{/js/plugins/chartjs.min.js}"></script>
+</head>
+<style>
+  .submenu {
+    display: none;
+  }
+
+  .submenu:not(.d-none) {
+    display: block;
+  }
+  
+</style>
+  <title>
+    Quản Lý Website Khách Sạn
+  </title>
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="  " target="_blank">
+   <img th:src="@{/img/logo-ct.png}" class="navbar-brand-img h-100" alt="main_logo">
+   
+    <span class="ms-1 font-weight-bold text-white">QUẢN LÝ KHÁCH SẠN</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../pages/dashboard">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Trang Chủ</span>
+          </a>
+        </li>
+        
+        
+ <li class="nav-item">
+  <a id="taikhoan-menu" class="nav-link text-white" >
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">account_circle</i>
+    </div>
+    <span class="nav-link-text ms-1">Khách hàng</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/taikhoan">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Khách hàng</span>
+      </a>
+
+  </ul>
+</li>
+
+
+
+<script>
+submenu = document.querySelector('#taikhoan-menu + .submenu');
+submenu.classList.toggle('d-none');
+  document.getElementById('taikhoan-menu').addEventListener('click', function() {
+    var submenu = document.querySelector('#taikhoan-menu + .submenu');
+    submenu.classList.toggle('d-none');
+  });
+</script>
+
+
+
+
+        
+        
+        <li class="nav-item">
+  <a id="billing-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">receipt_long</i>
+    </div>
+    <span class="nav-link-text ms-1">Hóa Đơn</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/billing">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Hóa Đơn</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#billing-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('billing-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#billing-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script>  
+
+
+
+
+
+
+      <li class="nav-item">
+  <a id="loaiphong-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">home</i>
+    </div>
+    <span class="nav-link-text ms-1">Loại Phòng</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/phong">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Loại Phòng</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#loaiphong-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('loaiphong-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#loaiphong-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <li class="nav-item">
+  <a id="phong-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">library_add</i>
+    </div>
+    <span class="nav-link-text ms-1">Phòng</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/loai_phong">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Phòng</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#phong-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('phong-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#phong-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+
+
+
+
+
+
+        
+        
+        
+        
+            <li class="nav-item">
+  <a id="dichvu-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">library_books</i>
+    </div>
+    <span class="nav-link-text ms-1">Dich Vu</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/dichvu">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Dich Vu</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#dichvu-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('dichvu-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#dichvu-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+        
+        
+        
+        
+
+
+
+
+ <li class="nav-item">
+  <a id="datphong-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">local_hotel</i>
+    </div>
+    <span class="nav-link-text ms-1">Đặt Phòng</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/datphong">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Đặt Phòng</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#datphong-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('datphong-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#datphong-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+
+    
+        
+        
+         <li class="nav-item">
+  <a id="khuyenmai-menu" class="nav-link text-white">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">loyalty</i>
+    </div>
+    <span class="nav-link-text ms-1">Khuyến Mãi</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/datphong">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Khuyến Mãi</span>
+      </a>
+
+  </ul>
+</li>
+
+      <script>
+      submenu = document.querySelector('#khuyenmai-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('khuyenmai-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#khuyenmai-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+
+
+         <li class="nav-item">
+  <a id="danhsachdatphong-menu" class="nav-link text-white active bg-gradient-primary">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">map</i>
+    </div>
+    <span class="nav-link-text ms-1">Danh Sách Đăt Phòng</span>
+  </a>
+  
+  <ul class="submenu">
+
+      <a class="nav-link text-white" href="../pages/datphong">
+        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+          <span class="material-icons opacity-10">add_circle</span>
+        </div>
+        <span class="nav-link-text ms-1">Thêm Đăt Phòng</span>
+      </a>
+
+  </ul>
+</li>
+
+<script>
+      submenu = document.querySelector('#danhsachdatphong-menu + .submenu');
+      submenu.classList.toggle('d-none');
+        document.getElementById('danhsachdatphong-menu').addEventListener('click', function() {
+          var submenu = document.querySelector('#danhsachdatphong-menu + .submenu');
+          submenu.classList.toggle('d-none');
+        });
+</script> 
+  
+  
+  
+  
+   <li class="nav-item">
+          <a class="nav-link text-white " href="../pages/profile">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">Khách Hàng</span>
+          </a>
+        </li>
+  
+          <li class="nav-item mt-3">
+            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">-----------------------------------</h6>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white " href="../pages/profile">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">person</i>
+              </div>
+              <span class="nav-link-text ms-1">Thông tin Khách hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white " href="../pages/sign-in">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">login</i>
+              </div>
+              <span class="nav-link-text ms-1">Đăng Xuất</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white " href="../pages/sign-up">
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">assignment</i>
+              </div>
+              <span class="nav-link-text ms-1">Đăng Nhập</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+    </aside>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <!-- Navbar -->
+      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+        <div class="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+              <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+              <li class="breadcrumb-item text-sm text-dark active" aria-current="page">trang chủ</li>
+            </ol>
+            <h6 class="font-weight-bolder mb-0">Trang Chủ</h6>
+          </nav>
+          
+            <ul class="navbar-nav  justify-content-end">
+             
+              <li class="nav-item d-flex align-items-center">
+                <a href="../pages/sign-in" class="nav-link text-body font-weight-bold px-0">
+                  <i class="fa fa-user me-sm-1"></i>
+                  <span class="d-sm-inline d-none">Đăng Nhập</span>
+                </a>
+            
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+        <nav>
+            <fieldset>
+                <legend>Loại Phòng:</legend>
+            
+                <div>
+                  <input type="radio" id="huey" name="drone" value="huey"
+                         checked>
+                  <label for="huey">Phòng cổ điển</label>
+                </div>
+            
+                <div>
+                  <input type="radio" id="dewey" name="drone" value="dewey">
+                  <label for="dewey">Phòng Tình Nhân</label>
+                </div>
+            
+                <div>
+                  <input type="radio" id="louie" name="drone" value="louie">
+                  <label for="louie">Phòng Vip</label>
+                </div>
+                <div>
+                    <input type="radio" id="louie" name="drone" value="louie">
+                    <label for="louie">Phòng thường</label>
+                </div>
+                
+            </fieldset> 
+            <div>
+                <label for="name">Tên phòng:</label>
+             
+        <input type="text" id="name" name="name" required
+               minlength="4" maxlength="8" size="30">
+           
+            <input class="favorite styled"
+               type="button"
+               value="Tìm kiếm">
+            </div>
+            <table border="1">
+                <h4 >DANH SÁCH Đặt PHÒNG</h4>
+                <tr>
+                    <th>Thông tin phòng</th>
+                    <th>Thông tin khách hàng</th>
+                    <th>Thông tin đặt phòng</th>
+                    <th>Trạng thái</th>
+                    <th>Chức Năng</th>
+                </tr>
+                <tr>
+                    <td>PH01-VIP-Khách Sạn Hoàng Duy</td>
+                    <td>Cao Tiến Hoàng | 092929292</td>
+                    <td>Ngày đặt phòng: 11/01/2023 11:00 AM <br><br>
+                        Ngày dự kiến đi: 13/01/2023 01:00 PM <br><br>
+                        Ngày thanh toán: 13/01/2023 01:00 PM
+                    </td>
+                    
+                    <td>Đã thanh toán</td>
+                    <td> <a href="../pages/chitiet">Chi tiết</a></td>
+                </tr>
+                <tr>
+                    <td>PH02-VIP-Khách Sạn Hoàng Duy</td>
+                    <td>Cao Tiến Huy | 092929292</td>
+                    <td>Ngày đặt phòng: 15/01/2023 11:00 AM <br><br>
+                        Ngày dự kiến đi: 16/01/2023 01:00 PM <br><br>
+                        Ngày thanh toán: 15/01/2023 01:00 PM
+                    </td>
+                    
+                    <td>Đã thanh toán</td>
+                    <td> <a href="../pages/chitiet">Chi tiết</a></td>
+                </tr>
+                <tr>
+                    <td>PH03-VIP-Khách Sạn Hoàng Duy</td>
+                    <td>Nguyễn Quốc Duy | 092929292</td>
+                    <td>Ngày đặt phòng: 27/02/2023 11:00 AM <br><br>
+                        Ngày dự kiến đi: 29/02/2023 01:00 PM <br><br>
+                        Ngày thanh toán: 29/02/2023 01:00 PM
+                    </td>
+                    
+                    <td>Đã thanh toán</td>
+                    <td> <a href="../pages/chitiet">Chi tiết</a></td>
+                </tr>
+                <tr>
+                    <td>PH04-VIP-Khách Sạn Hoàng Duy</td>
+                    <td>Đặng Hiếu Nhân | 092929292</td>
+                    <td>Ngày đặt phòng: 21/01/2023 11:00 AM <br><br>
+                        Ngày dự kiến đi: 23/01/2023 01:00 PM <br><br>
+                        Ngày thanh toán: 23/01/2023 01:00 PM
+                    </td>
+                    
+                    <td>Đã thanh toán</td>
+                    <td> <a href="../pages/chitiet">Chi tiết</a></td>
+                </tr>
+    
+</body>
+</html>

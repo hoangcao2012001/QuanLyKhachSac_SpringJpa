@@ -1,0 +1,164 @@
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl bg-gray-300" id="navbarBlur" data-scroll="true">
+      <div class="container-fluid py-0 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">dichvu</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">Trang Dịch Vụ</h6>
+        </nav>
+        
+         
+        </div>
+</nav>
+<br>
+	<div class="row">
+        <div class="col-12">	
+			<div class="card my-4">
+			
+				<div class="card-body">					
+					 <div class="card-header p-0 position-relative mt-n5 mx-0 z-index-1">
+		              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+		                <h6 class="text-white text-capitalize ps-5">Thông Tin Dịch Vụ</h6>
+		              </div>
+		            </div>
+		            <hr>
+		            <div>
+		            <div class="row">
+		           
+						<div class="col-md-6 mb-md-0 mb-4">							
+							<label  for="tenDichVu"><b>Tên Dịch Vụ:</b></label> <input
+								type="text" ng-model="form.tenDichVu" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Tên Dịch Vụ" />
+							 <label  for="donGia"><b>Đơn Giá:</b></label> <input
+								type="text" ng-model="form.donGia" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Đơn Giá" />
+							 
+							  <label  for="donVi"><b>Đơn Vị:</b></label> <input
+								type="text" ng-model="form.donVi" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Đơn Vị" />
+							
+						</div>
+						
+						<div class="col-md-6">
+							  <label  for="ghiChu"><b>Ghi Chú:</b></label> <input
+								type="text" ng-model="form.ghiChu" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Ghi Chú" />
+							  <label  for="moTa"><b>Mô Tả:</b></label> <textarea rows="4" cols="40"
+								type="text" ng-model="form.moTaDV" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Mô Tả"></textarea>
+						</div>
+				 </div>
+							
+					<!--<div class="form-group">
+						<label class="col-form-label" >Giới Tính :</label>
+						<div>
+							<input ng-model="form.phone" class="form-control"
+								placeholder="số điện thoại" required="required" id="phone"></input>
+						</div>
+					</div>-->
+					<hr>
+					<div class="form-footer">
+						<button ng-if="form.maDichVu == null"  class="btn btn-success" ng-click="create(form)">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button ng-if="form.maDichVu != null" class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-dark" ng-click="reset()">
+							<i class="fa fa-refresh" aria-hidden="true"></i> Làm mới
+						</button>
+						<button ng-if="form.maDichVu != null" class="btn btn-outline-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+			</div>
+			<hr>					
+        <div class="col-12">
+        	<div class="card-body">	
+	          <div class="card my-4">
+	            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+	              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+	                <h6 class="text-white text-capitalize ps-5">Danh Sách Dịch Vụ</h6>
+	              </div>
+	            </div>
+	            <div class="card-body px-0 pb-2">
+	              <div class="table-responsive ">
+	                <table class="table table-hover table-info align-items-center justify-content-center ">
+	                  <thead>
+	                    <tr>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder "></th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Tên Dịch Vụ</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Mô Tả</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Đơn Giá</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Đơn Vị</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Ghi Chú</th>
+	                      
+	                      
+	                    
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Lựa Chọn</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>	                  
+	                    <tr ng-repeat="(index,dv) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
+	                     <td>
+	                        <p class="text-sm text-center font-weight-bold mb-0 opacity-7">{{index+1}}</p>
+	                      </td>
+	                      <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.tenDichVu.substr(0,20)}}</p>
+	                       
+	                      </td>
+	                       <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.moTaDV.substr(0,30)}}</p>
+	                       
+	                      </td>
+	                      <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.donGia}}</p>
+	                       
+	                      </td>
+	                        <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.donVi}}</p>
+	                       
+	                      </td>
+	                      <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.ghiChu.substr(0,30)}}</p>
+	                       
+	                      </td>
+	                 	
+	                      
+	                    
+	                      
+	                      <td>
+	                        <button class="btn  btn-sm btn-warning" ng-click="edit(dv)">
+	                          <i class="fa fa-edit text-xs" ></i>
+	                        </button>
+		                      <button class="btn  btn-sm btn-danger" ng-click="delete(dv)">
+		                          <i class="fa fa-times text-xs" ></i>
+		                        </button>
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	                  <span class="btn btn-dark" style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang {{pager.page+ 1}} / {{pager.count}}</span>
+					<button class="btn btn-dark" ng-click="pager.last()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+					<button class="btn btn-dark" ng-click="pager.next()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+					<button class="btn btn-dark" ng-click="pager.prev()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+					<button class="btn btn-dark" ng-click="pager.first()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	    </div>
+	     </div>
+ </div>

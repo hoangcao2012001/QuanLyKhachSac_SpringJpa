@@ -1,0 +1,324 @@
+<nav
+	class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl bg-gray-300"
+	id="navbarBlur" data-scroll="true">
+	<div class="container-fluid py-0 px-3">
+		<nav aria-label="breadcrumb">
+			<ol
+				class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+				<li class="breadcrumb-item text-sm"><a
+					class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+				<li class="breadcrumb-item text-sm text-dark active"
+					aria-current="page">gọidichvu</li>
+			</ol>
+			<h6 class="font-weight-bolder mb-0">Trang Gọi Dịch Vụ</h6>
+		</nav>
+	</div>
+</nav>
+<br>
+<div class="row">
+	<div class="col-12">
+		<div class="card-body">
+			<div class="card my-4">
+				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+					<div
+						class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+						<h6 class="text-white text-capitalize ps-5">Chọn Phòng Cần
+							Gọi Dịch Vụ</h6>
+					</div>
+				</div>
+				<div class="card-body px-0 pb-2">
+					<div class="table-responsive ">
+						<table
+							class="table table-hover table-info align-items-center justify-content-center ">
+							<thead>
+								<tr>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder "></th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Mã
+										Phòng</th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Tên
+										Khách Hàng</th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Ngày
+										Sinh</th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Ngày
+										Nhận Phòng</th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Loại
+										Phòng</th>
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Trạng
+										Thái</th>
+
+									<th
+										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Lựa
+										Chọn</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									ng-repeat="(index,p) in pager.items | orderBy:sortType:sortReverse | filter:searchName"
+									ng-if = "p.ngayBD <= p.toDay && p.ngayKT >= p.toDay"
+									>
+									<td>
+										<p class="text-sm text-center font-weight-bold mb-0 opacity-7">{{index+1}}</p>
+									</td>
+									<td>
+
+										<p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maPhong.maPhong}}</p>
+
+									</td>
+									<td>
+
+										<p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maKhachHang.hoTen}}</p>
+
+									</td>
+									<td>
+
+										<p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maKhachHang.ngaySinh  | date:'dd/MM/yyyy'}}</p>
+
+									</td>
+									<td>
+										<p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.ngayBD  | date:'dd/MM/yyyy'}}</p>
+									</td>
+									<td>
+
+										<p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maPhong.maLoaiPhong.tenLoaiPhong}}</p>
+
+									</td>
+
+									<td class="text-sm"><span
+										class="badge badge-sm bg-gradient-success">Đang Sử Dụng</span>
+									</td>
+
+
+									<td>
+										<!-- Button trigger modal -->
+										<button type="button" ng-click="orderDV(p)"
+											class="btn mb-0 pt-2 pb-2 btn-sm btn-primary"
+											data-bs-toggle="modal" data-bs-target="#exampleModal">
+											Dịch Vụ</button> <!-- Modal -->
+										<div class="modal modal-xl fade" id="exampleModal"
+											tabindex="-1" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+
+														<button type="button" class="btn-close"
+															data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<nav
+															class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl bg-gray-300"
+															id="navbarBlur" data-scroll="true">
+															<div class="container-fluid py-0 px-3">
+																<nav aria-label="breadcrumb">
+																	<ol
+																		class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+																		<li class="breadcrumb-item text-sm"><a
+																			class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+																		<li class="breadcrumb-item text-sm text-dark active"
+																			aria-current="page">themdichvu</li>
+																	</ol>
+																	<h6 class="font-weight-bolder mb-0">Trang Thêm
+																		Dịch Vụ</h6>
+																</nav>
+															</div>
+														</nav>
+														<br>
+														<div class="row">
+															<div class="col-12">
+																<div class="card my-4">
+
+																	<div class="card-body">
+																		<div
+																			class="card-header p-0 position-relative mt-n0 mx-0 z-index-1">
+																			<div
+																				class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+																				<h6 class="text-white text-capitalize ps-3">Thông
+																					Tin Dịch Vụ</h6>
+																			</div>
+																		</div>
+																		<hr>
+																		<div>
+																			<div class="row">
+
+																				<div class="col-md-6 mb-md-0 mb-4">
+																					<label for="maPhong"><b>Mã Phòng :</b></label> <input
+																						type="text" ng-model="formAddDV.maPhong.maPhong"
+																						class="form-control bg-gray-350 ps-3"
+																						disabled="disabled" placeholder="Nhập Mã Phòng" />
+																					<label><b>Ngày Gọi :</b></label> <input
+																						disabled="disabled" type="date"
+																						ng-model="formAddDV.ngayOrder" name="ngayOrder"
+																						id="ngayOrder"
+																						class="form-control bg-gray-350  ps-3" /> <label
+																						id="loaiPhong"><b>Chọn Dịch Vụ Cần Gọi
+																							:</b></label> <select id="loaiPhong"
+																						ng-model="formAddDV.maDichVu"
+																						class="form-control bg-gray-300 ps-3"
+																						aria-invalid="false" name="loaiPhong">
+																						<option ng-repeat="dv in itemsDV"
+																							ng-value="dv.maDichVu">{{dv.tenDichVu}}</option>
+																					</select>
+																				</div>
+																				<div class="col-md-6">
+																					<label for="maKhachHang"><b>Tên Khách
+																							Hàng :</b></label> <input type="text"
+																						ng-model="formAddDV.maKhachHang.hoTen"
+																						disabled="disabled"
+																						class="form-control bg-gray-300  ps-3"
+																						placeholder="Nhập Mã Khách Hàng" />
+																					<div class="form-group">
+																						<label><b> Số Lượng : </b></label> <input
+																							type="number"
+																							class="form-control input ps-3 bg-gray-300"
+																							min="1" ng-model="formAddDV.soLuong" />
+																					</div>
+																					<br>
+																					<div class="form-control">
+																						<button type="button"
+																							class="btn btn-success btn-sm  mb-0 pt-2 pb-2 "
+																							ng-click="createOrderDV()">Gọi Dịch Vụ</button>
+																						<button type="button"
+																							class="btn btn-secondary mx-3   mb-0 pt-2 pb-2"
+																							data-bs-dismiss="modal">Hủy</button>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-12">
+																		<div class="card-body">
+																			<div class="card my-4">
+																				<div
+																					class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+																					<div
+																						class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+																						<h6 class="text-white text-capitalize ps-5">Dịch Vụ Trước Đó</h6>
+																					</div>
+																				</div>
+																				<div class="card-body px-0 pb-2">
+																					<div class="table-responsive ">
+																						<table
+																							class="table table-hover table-info align-items-center justify-content-center ">
+																							<thead>
+																								<tr>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder "></th>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Tên
+																										Dịch Vụ</th>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Tên Khách Hàng</th>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Đơn
+																										Giá</th>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Số Lượng</th>	
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Đơn
+																										Vị</th>
+																									<th
+																										class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Ghi
+																										Chú</th>
+																								</tr>
+																							</thead>
+																							<tbody>
+																								<tr
+																									ng-repeat="(index,dv) in pagerOrder.items | orderBy:sortType:sortReverse | filter:searchName">
+																									<td>
+																										<p
+																											class="text-sm text-center font-weight-bold mb-0 opacity-7">{{index+1}}</p>
+																									</td>
+																									<td>
+
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.maDichVu.tenDichVu.substr(0,20)}}</p>
+
+																									</td>
+																									<td>
+
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.maDatPhong.maKhachHang.hoTen}}</p>
+
+																									</td>
+																									<td>
+
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.maDichVu.donGia}}</p>
+
+																									</td>
+																									<td>
+
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.soLuong}}</p>
+
+																									</td>
+																									<td>
+
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.maDichVu.donVi}}</p>
+
+																									</td>
+																									<td>
+																										<p
+																											class="text-sm font-weight-bolder font-weight-bold mb-0">{{dv.maDichVu.ghiChu.substr(0,20)}}</p>
+																									</td>
+																								</tr>
+																							</tbody>
+																						</table>
+																						<span class="btn btn-dark"
+																							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang
+																							{{pagerOrder.page+ 1}} / {{pagerOrder.count}}</span>
+																						<button class="btn btn-dark"
+																							ng-click="pagerOrder.last()"
+																							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+																						<button class="btn btn-dark"
+																							ng-click="pagerOrder.next()"
+																							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+																						<button class="btn btn-dark"
+																							ng-click="pagerOrder.prev()"
+																							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+																						<button class="btn btn-dark"
+																							ng-click="pagerOrder.first()"
+																							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<span class="btn btn-dark"
+							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang
+							{{pager.page+ 1}} / {{pager.count}}</span>
+						<button class="btn btn-dark" ng-click="pager.last()"
+							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+						<button class="btn btn-dark" ng-click="pager.next()"
+							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+						<button class="btn btn-dark" ng-click="pager.prev()"
+							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+						<button class="btn btn-dark" ng-click="pager.first()"
+							style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

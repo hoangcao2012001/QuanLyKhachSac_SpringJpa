@@ -1,0 +1,184 @@
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl bg-gray-300" id="navbarBlur" data-scroll="true">
+      <div class="container-fluid py-0 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">phong</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">Trang Phòng</h6>
+        </nav>
+        
+          <ul class="navbar-nav  justify-content-end">
+           
+            <li class="nav-item d-flex align-items-center">
+              <a href="../pages/sign-in" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Đăng Nhập</span>
+              </a>
+         	 </li>
+                  
+              </ul>
+        </div>
+</nav>
+<br>
+	<div class="row">
+        <div class="col-12">	
+			<div class="card my-4">
+			
+				<div class="card-body">					
+					 <div class="card-header p-0 position-relative mt-n5 mx-0 z-index-1">
+		              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+		                <h6 class="text-white text-capitalize ps-5">Thông Tin Phòng</h6>
+		              </div>
+		            </div>
+		            <hr>
+		            <div>
+		            <div class="row">
+	
+						<div class="col-md-6 mb-md-0 mb-4">
+						<label id="loaiPhong" ><b>Chọn loại phòng:</b></label>
+						<select id="loaiPhong" ng-model="form.maLoaiPhong.maLoaiPhong" class="form-control bg-gray-300 ps-3" aria-invalid="false"   name="loaiPhong">
+      					 <option ng-repeat="c in loaiPhong" ng-value="c.maLoaiPhong">{{c.tenLoaiPhong}}</option>
+				    	</select>
+					
+						
+							<label  for="maPhong"><b>Mã Phòng :</b></label> 
+							<input type="text" ng-model="form.maPhong" class="form-control bg-gray-300 ps-3" 
+							 placeholder="Nhập Mã Phòng" /> 
+							 
+						
+							
+							<label  for="giaPhong"><b>Giá Phòng :</b></label> <input
+								type="text" ng-model="form.giaPhong" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Giá Phòng" />
+							 
+							
+							 
+						
+							
+							
+						</div>
+						<div class="col-md-6">
+						 <label  for="maKhuyenMai"><b>Mã Khuyến Mãi :</b></label> <input
+								type="text" ng-model="form.maKhuyenMai" class="form-control bg-gray-300  ps-3"
+							 placeholder="Nhập Mã Khuyến Mãi" />
+								 <label ><b>Trạng Thái :</b></label>
+							 <div class="form-check">
+							  <input ng-model="form.tinhTrang" class="form-check-input" type="checkbox"   value="true" checked>
+							  <label class="form-check-label" >
+							    <b> Sử Dụng </b>
+							  </label>
+							</div>					
+						</div>
+				 </div>
+							
+					<!--<div class="form-group">
+						<label class="col-form-label" >Giới Tính :</label>
+						<div>
+							<input ng-model="form.phone" class="form-control"
+								placeholder="số điện thoại" required="required" id="phone"></input>
+						</div>
+					</div>-->
+					<hr>
+					<div class="form-footer">
+						<button  class="btn btn-success" ng-click="create(form)">
+							<i class="fa fa-check-square-o"></i> Thêm
+						</button>
+						<button ng-if="form.maPhong != null" class="btn btn-warning" ng-click="update(form)">
+							<i class="fa fa-check-square-o"></i> Cập nhật
+						</button>
+						<button class="btn btn-dark" ng-click="reset()">
+							<i class="fa fa-refresh" aria-hidden="true"></i> Làm mới
+						</button>
+						<button ng-if="form.maPhong != null" class="btn btn-outline-danger" ng-click="delete(form)">
+							<i class="fa fa-times"></i> Xóa
+						</button>
+					</div>
+				</div>
+			</div>
+			</div>
+			<hr>					
+        <div class="col-12">
+        	<div class="card-body">	
+	          <div class="card my-4">
+	            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+	              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+	                <h6 class="text-white text-capitalize ps-5">Danh Sách Phòng</h6>
+	              </div>
+	            </div>
+	            <div class="card-body px-0 pb-2">
+	              <div class="table-responsive ">
+	                <table class="table table-hover table-info align-items-center justify-content-center ">
+	                  <thead>
+	                    <tr>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder "></th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Mã Phòng</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Giá Phòng</th>
+	                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Loại Phòng</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Mã Khuyến Mãi</th>
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Trạng Thái </th>
+	         
+	                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Lựa Chọn</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                     <tr ng-repeat="(index,p) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
+	                     <td>
+	                        <p class="text-sm text-center font-weight-bold mb-0 opacity-7">{{index+1}}</p>
+	                      </td>
+	                      <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maPhong}}</p>
+	                       
+	                      </td>
+	                   <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.giaPhong}}</p>
+	                       
+	                      </td>
+	                         <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maLoaiPhong.tenLoaiPhong}}</p>
+	                       
+	                      </td>
+	                      <td>
+	                        
+	                          <p class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maKhuyenMai}}</p>
+	                       
+	                      </td>
+	                     
+	                      <td class="text-sm">
+                        		<span ng-if="p.tinhTrang == true" class="badge badge-sm bg-gradient-success" >Đang Sử Dụng</span>
+                        		<span ng-if="p.tinhTrang == false" class="badge badge-sm bg-gradient-danger">Ngưng Sử Dụng</span>
+                     		</td>
+	                          
+	                      
+	                                         
+	                      <td>
+	                        <button class="btn  btn-sm btn-warning" ng-click="edit(p)">
+	                          <i class="fa fa-edit text-xs" ></i>
+	                        </button>
+		                      <button class="btn  btn-sm btn-danger" ng-click="delete(p)">
+		                          <i class="fa fa-times text-xs" ></i>
+		                        </button>
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	              </div>
+	              <span class="btn btn-dark" style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang {{pager.page+ 1}} / {{pager.count}}</span>
+					<button class="btn btn-dark" ng-click="pager.last()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+					<button class="btn btn-dark" ng-click="pager.next()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+					<button class="btn btn-dark" ng-click="pager.prev()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+					<button class="btn btn-dark" ng-click="pager.first()"
+						style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+			        </div>
+	            </div>
+	          </div>
+	        </div>
+	    </div>
+	     </div>
+ </div>

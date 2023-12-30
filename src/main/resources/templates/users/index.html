@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD Hotel</title>
+  <link rel="stylesheet"  th:href="@{/user/css/style.css}" crossorigin="anonymous" />
+<link id="pagestyle" th:href="@{/css/material-dashboard.css?v=3.0.4}" rel="stylesheet" />
+  <script th:src="@{/js/core/popper.min.js}"></script>
+<script th:src="@{/js/core/bootstrap.min.js}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body ng-app="user-app" ng-controller="user-ctrl">
+  <header>
+    <div class="content flex_space">
+      <div class="logo">
+        <img th:src="@{/user/images/logo.png}" alt="">
+      </div>
+      <div class="navlink">
+        <ul id="menulist">
+          <li> <a href="#home">Trang Chủ</a> </li>
+
+          <li> <a href="https://www.facebook.com/profile.php?id=100092955787258">Page Facebook</a> </li>
+ 
+          <li> <button class="btn btn-sm btn-success mt-n0 mx-0 pt-3 pb-3" ng-click="seachDP()" data-bs-toggle="modal" data-bs-target="#exampleModal1">Đặt Phòng Ngay</button>
+          		
+           </li>
+        </ul>
+        <span class="fa fa-bars" onclick="menutoggle()"></span>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal1"
+																	tabindex="-1" aria-labelledby="exampleModalLabel1"
+																	aria-hidden="true">
+																	<div class="modal-dialog modal-xl">
+																		<div class="modal-content">
+																			<div class="modal-header">
+
+																				<button type="button" class="btn-close btn-danger bg-danger"
+																					data-bs-dismiss="modal" aria-label="Close"></button>
+																			</div>
+																			<div class="modal-body">
+																				<div class="row">
+	<div class="col-12">
+		<div class="card my-4">
+
+			<div class="card-body">
+				<div class="card-header p-0 position-relative mt-n5 mx-0 z-index-1">
+					<div
+						class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+						<h5 class="text-white text-capitalize ps-5">Thông tin Đặt
+							PHòng</h5>
+					</div>
+				</div>
+				<hr>
+				<div>
+					<div class="row">
+
+						<div class="col-md-4 mb-md-0 mb-4">
+							
+							<div class="form-group">
+								<label  class="form-control bg-gray-0 opacity-7" for="ngayBD"><b class="opacity-10"> Ngày Nhận Phòng : </b></label> <input
+									type="date" class="form-control input ps-3 bg-gray-300"
+									id="ngayBD"  ng-model="formDP.ngayBD" />
+							</div>
+							<div class="form-group">
+								<label for="ngayKT" class="form-control bg-gray-0 opacity-7"><b> Ngày Trả Phòng : </b></label> <input
+									type="date" class="form-control input ps-3 bg-gray-300"
+									id="ngayKT" ng-model="formDP.ngayKT" /> 
+							</div>
+								<div class="row">
+							<div class="col-md-12 mb-md-0 mb-4">
+							<label id="loaiPhong" class="form-control bg-gray-0 opacity-7"><b>Chọn loại phòng:</b></label> <select
+								id="loaiPhong" ng-model="form.maLoaiPhong.maLoaiPhong"
+								class="form-control bg-gray-300 ps-3" aria-invalid="false"
+								name="loaiPhong">
+								<option ng-repeat="c in items" ng-value="c.maLoaiPhong">{{c.tenLoaiPhong}}</option>
+							</select>
+							</div>
+							<div  class="col-md-4 mb-md-0 mb-4">
+									<button  class="btn btn-success" ng-click="seachByLoaiPhong(form)">
+										Tìm Kiếm
+									</button>
+							</div>
+							</div>
+						</div>
+						
+						
+						
+						<div class="col-md-8 mb-md-0 mb-4">
+							<div class="col-12">
+								<div class="card-body">
+									<div class="card my-4">
+										<div
+											class="card-header p-0  mt-n4 mx-3 z-index-2">
+											<div
+												class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+												<h6 class="text-white text-capitalize ps-5">Danh Sách
+														Phòng Trống</h6>
+											</div>
+										</div>
+										<div class="card-body px-0 pb-2">
+											<div class="table-responsive ">
+												<table
+													class="table table-hover table-info ">
+													<thead>
+														<tr>
+															<th>Mã Phòng</th>
+															<th>Giá Phòng</th>
+															<th>Loại Phòng</th>
+															<th>Trạng Thái</th>
+
+															<th>Kiểm Tra</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr
+															ng-repeat="(index,p) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
+															<td>
+
+																<p
+																	class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maPhong}}</p>
+
+															</td>
+															<td>
+
+																<p
+																	class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.giaPhong}}</p>
+
+															</td>
+															<td>
+
+																<p
+																	class="text-sm font-weight-bolder font-weight-bold mb-0">{{p.maLoaiPhong.tenLoaiPhong}}</p>
+
+															</td>
+
+															<td class="text-sm"><span
+																ng-if="p.tinhTrang == true"
+																class="badge badge-sm bg-gradient-success">Còn
+																	Trống</span></td>
+
+
+															<td>
+																<!-- Button trigger modal -->
+																<button type="button" ng-click="createDP(p)"
+																	class="btn btn-sm  btn-primary">
+																	Đặt Phòng</button> <!-- Modal -->
+																
+															</td>
+														</tr>
+													</tbody>
+												</table>
+												<span class="btn btn-dark"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang
+													{{pager.page+ 1}} / {{pager.count}}</span>
+												<button class="btn btn-dark" ng-click="pager.last()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+												<button class="btn btn-dark" ng-click="pager.next()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+												<button class="btn btn-dark" ng-click="pager.prev()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+												<button class="btn btn-dark" ng-click="pager.first()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-secondary"
+																					data-bs-dismiss="modal">Trở Lại</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+  </header>
+
+  <script>
+    var menulist = document.getElementById('menulist');
+    menulist.style.maxHeight = '0px';
+
+    function menutoggle() {
+      if (menulist.style.maxHeight == '0px') {
+        menulist.style.maxHeight = '100vh';
+      } else {
+        menulist.style.maxHeight = '0px';
+      }
+    }
+  </script>
+
+  <section class="home">
+    <div class="content">
+      <div class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="/HD/user/images/banner-1.png" alt="">
+          <div class="text">
+            <h1>KHÁCH SẠN HD</h1>
+            <p>Hân Hạnh Được Phục Vụ Qúy Khách</p>
+            <div class="flex">
+              <button class="primary-btn" id="phone-btn">Liên Hệ Qua Phone</button>
+              
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/HD/user/images/banner-2.png" alt="">
+          <div class="text">
+            <h1>kHÁCH SẠN HD</h1>
+            <p>Hân Hạnh Được Phục Vụ Qúy Khách</p>
+      
+            <div class="flex">
+       
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="/HD/user/images/banner-3.png" alt="">
+          <div class="text">
+            <h1>kHÁCH SẠN HD</h1>
+            <p>Hân Hạnh Được Phục Vụ Qúy Khách</p>
+            <div class="flex">
+             
+  
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ <script>
+//Lấy đối tượng nút (button)
+  var button = document.getElementById('phone-btn');
+
+  // Thêm sự kiện click cho nút
+  button.addEventListener('click', function() {
+      // Hiển thị thông báo hotline
+      alert('Hotline: 0327299456');
+  });
+
+  
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+ <script>
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: true,
+      dots: false,
+      navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 1
+        },
+        1000: {
+          items: 1
+        }
+      }
+    })
+  </script> 
+
+
+ 
+
+  <section class="about top">
+    <div class="container flex">
+      <div class="left ">
+        <div class="heading">
+          <h1>Hotel HD</h1>
+          <BR><BR><BR>
+          <h2>XIN CHÀO</h2>
+        </div>
+
+        <p>Khách sạn Hoàng Duy là một khách sạn sang trọng và hiện đại, nằm ở trung tâm thành phố. Với vị trí thuận lợi, khách sạn cung cấp một trải nghiệm lưu trú đẳng cấp cho du khách.
+
+        </p>
+        
+      </div>
+      <div class="right">
+        <img src="/HD/user/images/about.png" alt="">
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="counter top">
+    <div class="container grid">
+      <div class="box">
+        <h1>2500</h1>
+        <hr>
+        <span>Khách Hàng</span>
+      </div>
+     
+      <div class="box">
+        <h1>100</h1>
+        <hr>
+        <span>Nhân Viên Phục Vụ Chuyên Nghiệp</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="rooms">
+    <div class="container top">
+      <div class="heading">
+        <h1>KHÁM PHÁ</h1>
+        <BR><BR><BR>
+        <h2>LOẠI PHÒNG</h2>
+     </div>
+
+      <div class="content" ng-repeat="(index,lp) in items">
+        <div class="owl-theme">
+          <div class="items container flex">
+            <div class="image right">
+              <img ng-src="{{'/HD/assets/images/user/'+ lp.image}}" 
+              width="570px" height="380px" alt="">
+            </div>
+            <div class="text left">
+              <h2>{{lp.tenLoaiPhong}}</h2>
+              <div class="rate flex">
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+              </div>
+              <p>{{lp.mota}}</p>
+              <div class="button flex">
+                <button ng-click="seachDPByLP(lp)" class="primary-btn">ĐẶT NGAY</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ <!--  <script>
+    $('.owl-carousel1').owlCarousel({
+      loop: true,
+      margin: 40,
+      nav: true,
+      dots: false,
+      navText: [" <i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+      responsive: {
+        0: {
+          items: 0
+        },
+        768: {
+          items: 0,
+          margin: 5,
+        },
+        1000: {
+          items: 1
+        }
+      }
+    })
+  </script> -->
+
+  
+
+
+
+
+
+
+  <section class="service top">
+    <div class="container">
+      <div class="heading">
+        <h1>DỊCH VỤ</h1>
+<BR><BR><BR>
+        <h2>DỊCH VỤ        </h2>
+      </div>
+
+      <div class="content flex_space">
+        <div class="left grid2">
+          <div class="box">
+            <div class="text">
+              <i class="fa-solid fa-champagne-glasses"></i>
+              <h3>Nước Uống </h3>
+            </div>
+          </div>
+          <div class="box">
+            <div class="text">
+              <i class="fa-solid fa-person-biking"></i>
+              <h3>Phương Tiện</h3>
+            </div>
+          </div>
+          <div class="box">
+            <div class="text">
+              <i class="fa-solid fa-utensils"></i>
+              <h3>Nhà Hàng</h3>
+            </div>
+          </div>
+          <div class="box">
+            <div class="text">
+              <i class="fa-solid fa-spa"></i>
+              <h3>Spa Chăm Sóc Sức Khỏe</h3>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <img src="/HD/user/images/service.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ 
+
+
+
+  <section class="newsletter mtop">
+    
+  </section>
+
+
+  <footer>
+    <div class="container grid">
+      <div class="box">
+        <img src="images/logo.png" alt="">
+        <div class="icon">
+          <i class="fa fa-facebook-f"></i>
+          <i class="fa fa-instagram"></i>
+          <i class="fa fa-twitter"></i>
+          <i class="fa fa-youtube"></i>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>LIÊN HỆ</h2>
+        <ul>
+          <li><a href="https://www.facebook.com/profile.php?id=100092955787258" style="color: aqua;">Facebook</a> </li>
+          <li style="color: aqua;">ZALO:0327299456</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>Thông Tin Khách Sạn </h2>
+      <i class="fa-solid fa-location-dot"></i> <label>48 Lê Lợi ,Phuong 4,Gò Vấp</label> <br>
+        <i class="fa-solid fa-phone"></i><label>[+84] 327299456</label><br>
+        <i class="fa-solid fa-envelope"></i><label> khachsanhd@gmail.com</label><br>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="/js/material-dashboard.min.js?v=3.0.4"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/032d11eac3.js" crossorigin="anonymous"></script>
+  <!-- fontawesome -->
+<script
+		th:src="@{//cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/user/js/index.js}"></script>
+</body>
+
+</html>

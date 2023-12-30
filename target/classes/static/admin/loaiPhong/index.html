@@ -1,0 +1,166 @@
+<nav
+	class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl bg-gray-300"
+	id="navbarBlur" data-scroll="true">
+	<div class="container-fluid py-0 px-3">
+		<nav aria-label="breadcrumb">
+			<ol
+				class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+				<li class="breadcrumb-item text-sm"><a
+					class="opacity-5 text-dark" href="javascript:;">Trang</a></li>
+				<li class="breadcrumb-item text-sm text-dark active"
+					aria-current="page">loaiphong</li>
+			</ol>
+			<h6 class="font-weight-bolder mb-0">Trang Loại Phòng</h6>
+		</nav>
+
+		<ul class="navbar-nav  justify-content-end">
+
+			<li class="nav-item d-flex align-items-center"><a
+				href="../pages/sign-in"
+				class="nav-link text-body font-weight-bold px-0"> <i
+					class="fa fa-user me-sm-1"></i> <span class="d-sm-inline d-none">Đăng
+						Nhập</span>
+			</a></li>
+
+		</ul>
+	</div>
+</nav>
+<br>
+<div class="row">
+	<div class="col-12">
+		<div class="card my-4">
+
+			<div class="card-body">
+				<div class="card-header p-0 position-relative mt-n5 mx-0 z-index-1">
+					<div
+						class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+						<h4 class="text-white text-capitalize ps-5">Thông Tin Loại
+							Phòng</h4>
+					</div>
+				</div>
+				<hr>
+				<div>
+					<div class="row">
+						<input type="file" id="image" style="visibility: hidden;"
+						onchange="angular.element(this).scope().imageChanged(this.files)" />
+						<div class="col-md-4 mb-md-0 mb-4">
+
+							<label for="tenLoaiPhong"><b>Tên Loại Phòng :</b></label> <input
+								type="text" ng-model="form.tenLoaiPhong"
+								class="form-control bg-gray-300  ps-3" placeholder="Nhập Mô Tả" />
+							<label for="moTa"><b>Mô Tả :</b></label> <textarea rows="9" cols="50"
+								ng-model="form.mota" aria-label="With textarea" class="form-control bg-gray-300  ps-3"
+								placeholder="Nhập Mô Tả"></textarea>
+							<label for="image"><b>Hình Ảnh :</b>
+							<img alt="" class="form-control bg-gray-300"
+										ng-src="{{'/HD/assets/images/user/'+form.image}}" width="400px"
+										height="200px" style="float: right; object-fit: cover; border: 1px solid #fff;">
+							</label>
+							<hr>
+							<div class="form-footer">
+								<button ng-if="form.maLoaiPhong == null" class="btn btn-success"
+									ng-click="create(form)">
+									<i class="fa fa-check-square-o"></i> Thêm
+								</button>
+								<button ng-if="form.maLoaiPhong != null" class="btn btn-warning"
+									ng-click="update(form)">
+									<i class="fa fa-check-square-o"></i> Cập nhật
+								</button>
+								<button class="btn btn-dark" ng-click="reset()">
+									<i class="fa fa-refresh" aria-hidden="true"></i> Làm mới
+								</button>
+								<button ng-if="form.maLoaiPhong != null"
+									class="btn btn-outline-danger" ng-click="delete(form)">
+									<i class="fa fa-times"></i> Xóa
+								</button>
+							</div>
+						</div>
+
+						<div class="col-md-8 mb-md-0 mb-4">
+							<div class="col-12">
+								<div class="card-body">
+									<div class="card my-4">
+										<div
+											class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+											<div
+												class="bg-gradient-primary shadow-primary border-radius-lg pt-2 pb-2">
+												<h6 class="text-white text-capitalize ps-5">Danh Sách
+													Loại Phong</h6>
+											</div>
+										</div>
+										<div class="card-body px-0 pb-2">
+											<div class="table-responsive ">
+												<table
+													class="table table-hover table-info align-items-center justify-content-center ">
+													<thead>
+														<tr>
+															<th
+																class="text-uppercase text-secondary text-xxs font-weight-bolder "></th>
+															<th
+																class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Tên
+																Loại Phòng</th>
+															<th
+																class="text-uppercase text-secondary text-xxs font-weight-bolder   ">Mô
+																Tả</th>
+															<th
+																class="text-uppercase text-secondary text-xxs font-weight-bolder  ">Lựa
+																Chọn</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr
+															ng-repeat="(index,lp) in pager.items | orderBy:sortType:sortReverse | filter:searchName">
+															<td>
+																<p
+																	class="text-sm text-center font-weight-bold mb-0 opacity-7">{{index+1}}</p>
+															</td>
+															<td>
+
+																<p
+																	class="text-sm font-weight-bolder font-weight-bold mb-0">{{lp.tenLoaiPhong}}</p>
+
+															</td>
+															<td>
+
+																<p
+																	class="text-sm font-weight-bolder font-weight-bold mb-0">{{lp.mota.substr(0,35)}}</p>
+
+															</td>
+															<td>
+																<button class="btn  btn-sm btn-warning"
+																	ng-click="edit(lp)">
+																	<i class="fa fa-edit text-xs"></i>
+																</button>
+																<button class="btn  btn-sm btn-danger"
+																	ng-click="delete(lp)">
+																	<i class="fa fa-times text-xs"></i>
+																</button>
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												<span class="btn btn-dark"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">trang
+													{{pager.page+ 1}} / {{pager.count}}</span>
+												<button class="btn btn-dark" ng-click="pager.last()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>|</button>
+												<button class="btn btn-dark" ng-click="pager.next()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">>></button>
+												<button class="btn btn-dark" ng-click="pager.prev()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px"><<</button>
+												<button class="btn btn-dark" ng-click="pager.first()"
+													style="float: right; color: white; font-size: 10px; margin-left: 1px; margin-bottom: 1px">|<</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</div>
+</div>
